@@ -6,7 +6,7 @@ public class FrogSimulation {
 	//Initializes the RNG and the scanner
 		public static Random rand = new Random();
 		public static Scanner sc = new Scanner(System.in);
-	//List of frogs added when simulations are run
+	//List of frogs added per jump
 		public static ArrayList<Frog> frogList = new ArrayList<Frog>();
 	//more integers
 		private static int goalDistance;
@@ -19,6 +19,10 @@ public class FrogSimulation {
 			
 		}
 	
+		public static int getGoalDist() {
+			return goalDistance;
+		}
+		
 	//returns how far the frog hops, number from -50 to 50, excluding 0.
 		private static int hopDistance() {
 		
@@ -33,7 +37,7 @@ public class FrogSimulation {
 	//simulates one frog, returns whether or not the frog completes it's goal
 	//frog fails if it goes negative to it starting position or if the goal distance is not met within the max number of hops
 		public static boolean simulate() {
-			System.out.println();
+			
 			int totDist = 0;
 			int currentHop = 0;
 		//the list of jumps each frog takes
@@ -43,9 +47,6 @@ public class FrogSimulation {
 			{
 			//gets distance hopped
 				currentHop = hopDistance();
-				
-			// test code, don't worry about this, can be commented out if neccesary
-				System.out.println(currentHop);
 			//adds the hop distance to it's total hop distance
 				totDist += currentHop;
 			//adds to the list	
@@ -129,6 +130,12 @@ public class FrogSimulation {
 						Frog thisFrog = frogList.get(frogNum-1);
 						thisFrog.printList();
 						System.out.println("Average jumped :" + thisFrog.getAvg());
+						System.out.println("Frog success: "); 
+						if (thisFrog.getSuccess()) {
+							System.out.print("Yes");
+						} else {
+							System.out.print("No");
+						}
 					break;
 					}
 					}
